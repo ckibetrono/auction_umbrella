@@ -9,6 +9,9 @@
 # move said applications out of the umbrella.
 import Config
 
+config :auction,
+  ecto_repos: [Auction.Repo]
+
 config :auction_web,
   generators: [context_app: false]
 

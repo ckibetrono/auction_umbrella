@@ -1,5 +1,12 @@
 import Config
 
+
+config :auction, Auction.Repo,
+  database: "auction",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost"
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
