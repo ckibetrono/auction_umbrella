@@ -6,11 +6,6 @@ defmodule AuctionWeb.ItemController do
     render(conn, "index.html", items: items)
   end
 
-  def show(conn, %{"id" => id}) do
-    item = Auction.get_item(id)
-    render(conn, "show.html", item: item)
-  end
-
   def new(conn, _params) do
     item = Auction.new_item()
     render(conn, "new.html", item: item)
@@ -34,5 +29,11 @@ defmodule AuctionWeb.ItemController do
       {:ok, item} -> redirect(conn, to: Routes.item_path(conn, :show, item))
       {:error, item} -> render(conn, "edit.html", item: item)
     end
+  end
+
+  def show(conn, %{"id" => id}) do
+    item = Auction.get_item_with_bids(id)
+    bid = Auction.new_bid()
+    render(conn, "show.html", item: item, bid: bid)
   end
 end
